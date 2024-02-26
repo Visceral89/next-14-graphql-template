@@ -35,4 +35,47 @@ export function ApolloWrapper({ children }) {
 	);
 }
 
-// When using the data, dont forget to read: https://www.apollographql.com/blog/using-apollo-client-with-next-js-13-releasing-an-official-library-to-support-the-app-router
+// When using the data:
+/*
+import { gql } from "@apollo/client";
+import { getClient } from "@/lib/client";
+import { cookies } from "next/headers";
+
+
+const USER_QUERY = gql`
+  query Query {
+    user {
+      id
+      firstName
+      email
+      phone
+    }
+  }
+`;
+
+
+const UserProfile = async () => {
+  const client = getClient();
+  const ourCookies = cookies();
+
+  let token = await ourCookies.get("jwtToken")!.value;
+
+  let jwtToken = JSON.parse(token);
+
+  const { data } = await client.query({
+    query: USER_QUERY,
+    context: {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    },
+  });
+  console.log("🚀 ~ user ~ data:", data?.user);
+  return (
+    <>
+      <h1>{data?.user?.firstName}</h1>
+      <h2>{data?.user?.email}</h2>
+    </>
+  );
+};
+*/
